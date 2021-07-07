@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+      <head>
+          <th:block th:include="~{/fragments/head}"></th:block>
+        </head>
+<body>
+        <header xmlns:h="http://xmlns.jcp.org/jsf/html">
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <th:block th:include="~{/fragments/nav}"></th:block>
+            </nav>
+        </header>
+    <main>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Details</span></h1>
+        <hr class="my-3"/>
+        <div th:object="${item}" class="container-fluid bg-blur w-50">
+            <div class="row justify-content-center">
+                <form class="w-50 justify-content-center">
+                    <div class="label mt-2">
+                        <h2 th:text="*{name}" class="text-white text-center">Buzzer</h2>
+                    </div>
+                    <div class="label mt-4">
+                        <img library="img" th:src="*{imgUrl}" class="img-thumbnail" width="200" height="200"/>
+                        <h3 th:text="*{description}" class="text-white text-center">80% silk</h3>
+                    </div>
+                    <div class="label mt-4">
+                        <h3 th:text="*{price}" class="text-white text-center mb-3">65.00</h3>
+                    </div>
+                    <div class="button-holder d-flex justify-content-center">
+                        <a th:href="@{/items/delete/{id}(id = *{id})}" class="btn btn-danger text-white mb-3">Delete Product</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
