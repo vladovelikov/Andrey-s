@@ -1,5 +1,6 @@
 package com.example.hateoas.web;
 import com.example.hateoas.model.Course;
+import com.example.hateoas.model.dto.OrderDto;
 import com.example.hateoas.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -51,6 +52,14 @@ public class CoursesController {
 
         Link self = linkTo(methodOn(CoursesController.class).getCourse(course.getId())).withSelfRel();
         result.add(self);
+
+        if(course.isEnabled()) {
+            OrderDto orderDto = new OrderDto();
+            orderDto.setCourseId(course.getId());
+            Link enroll = linkTo(methodOn(OrdersController.class).createOrder(orderDto))
+                    .withRel("enroll");
+            result.add(enroll);
+        }
 
         return result.toArray(new Link[0]);
     }
