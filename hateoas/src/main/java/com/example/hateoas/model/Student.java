@@ -1,4 +1,6 @@
 package com.example.hateoas.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class Student {
     private int age;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Order> orders;
 
     public Student() {

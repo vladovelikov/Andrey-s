@@ -78,6 +78,9 @@ public class StudentsController {
         Link self = linkTo(methodOn(StudentsController.class).getStudent(student.getId())).withSelfRel();
         links.add(self);
 
+        Link orders = linkTo(methodOn(StudentsController.class).getOrdersByStudentId(student.getId())).withRel("orders");
+        links.add(orders);
+
         return links.toArray(new Link[0]);
     }
 }
